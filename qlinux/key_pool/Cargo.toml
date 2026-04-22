@@ -1,0 +1,12 @@
+[package]
+name = "key_pool"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+zeroize = { workspace = true }
+tokio = { workspace = true }
+qhal = { path = "../qhal" }

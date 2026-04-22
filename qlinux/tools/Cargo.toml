@@ -1,0 +1,19 @@
+[package]
+name = "qlinux-tools"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "qlinux-entropy-check"
+path = "src/entropy_check.rs"
+
+[[bin]]
+name = "qlinux-pool-status"
+path = "src/pool_status.rs"
+
+[dependencies]
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = "0.3"
+qhal = { path = "../qhal" }
+key_pool = { path = "../key_pool" }
