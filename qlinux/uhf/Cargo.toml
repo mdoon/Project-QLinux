@@ -1,0 +1,15 @@
+﻿[package]
+name = "uhf"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["std"]
+std = []
+
+[dependencies]
+zeroize  = { workspace = true }
+thiserror = { workspace = true, optional = true }
+
+[dev-dependencies]
+hex-literal = "0.4"

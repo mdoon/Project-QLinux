@@ -1,0 +1,11 @@
+﻿[package]
+name = "ipc"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+std_test = []
+
+[dependencies]
+zeroize = { version = "1", default-features = false, features = ["derive"] }

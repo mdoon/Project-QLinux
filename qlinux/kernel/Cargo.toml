@@ -1,0 +1,16 @@
+﻿[package]
+name = "qlinux-kernel"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+std_test = ["scheduler/std_test", "memory/std_test", "ipc/std_test", "syscall/std_test"]
+
+[dependencies]
+scheduler    = { path = "scheduler" }
+memory       = { path = "memory" }
+ipc          = { path = "ipc" }
+syscall      = { path = "syscall" }
+drivers_core = { path = "drivers_core" }
+zeroize      = { version = "1", default-features = false, features = ["derive"] }

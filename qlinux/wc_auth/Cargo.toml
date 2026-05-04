@@ -1,0 +1,9 @@
+﻿[package]
+name = "wc_auth"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+uhf       = { path = "../uhf" }
+zeroize   = { workspace = true }
+thiserror = { workspace = true }

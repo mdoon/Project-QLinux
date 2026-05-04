@@ -1,10 +1,18 @@
-[workspace]
+﻿[workspace]
 members = [
     "qhal",
     "key_pool",
     "otp_engine",
     "auth",
     "tools",
+    "uhf",
+    "wc_auth",
+    "kernel",
+    "kernel/scheduler",
+    "kernel/memory",
+    "kernel/ipc",
+    "kernel/syscall",
+    "kernel/drivers_core",
 ]
 resolver = "2"
 
