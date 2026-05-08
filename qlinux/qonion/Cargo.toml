@@ -1,0 +1,17 @@
+﻿[package]
+name = "qonion"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror  = { workspace = true }
+zeroize    = { workspace = true }
+tokio      = { workspace = true }
+qtor       = { path = "../qtor" }
+uhf        = { path = "../uhf" }
+wc_auth    = { path = "../wc_auth" }
+key_pool   = { path = "../key_pool" }
+otp_engine = { path = "../otp_engine" }
+
+[features]
+default = []
