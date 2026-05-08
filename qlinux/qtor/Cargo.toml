@@ -1,0 +1,16 @@
+﻿[package]
+name = "qtor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror = { workspace = true }
+zeroize   = { workspace = true }
+tokio     = { workspace = true }
+uhf       = { path = "../uhf" }
+wc_auth   = { path = "../wc_auth" }
+key_pool  = { path = "../key_pool" }
+
+[features]
+default = []
+hw_entropy = []
