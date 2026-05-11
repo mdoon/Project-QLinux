@@ -3,7 +3,6 @@
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use thiserror::Error;
-use zeroize::Zeroize;
 
 #[derive(Debug, Error)]
 pub enum AmnesiaError {

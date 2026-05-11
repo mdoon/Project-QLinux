@@ -68,7 +68,7 @@ impl KeyPoolManager {
         })
     }
 
-    fn lock(&self) -> Result<std::sync::MutexGuard<PoolState>, KeyPoolError> {
+    fn lock(&self) -> Result<std::sync::MutexGuard<'_, PoolState>, KeyPoolError> {
         self.state.lock().map_err(|_| KeyPoolError::LockPoisoned)
     }
 

@@ -6,7 +6,7 @@ use std::sync::Arc;
 use thiserror::Error;
 use zeroize::{Zeroize, Zeroizing};
 
-use wc_auth::{WcAuthSession, SessionRole, WcAuthError};
+use wc_auth::{WcAuthSession, WcAuthError};
 use key_pool::{KeyPoolManager, KeyPoolError};
 
 pub const CELL_SIZE:       usize = 512;
