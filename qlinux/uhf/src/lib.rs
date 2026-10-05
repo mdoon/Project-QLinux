@@ -72,6 +72,7 @@ impl Poly1305Key {
         Self { r, s }
     }
 
+    #[cfg(feature = "std")]
     pub fn from_zeroizing(key: &Zeroizing<Vec<u8>>) -> Result<Self, UhfError> {
         if key.len() != POLY1305_KEY_LEN { return Err(UhfError::InvalidKeyLength); }
         Ok(Self::new(key[..].try_into().unwrap()))
@@ -325,8 +326,8 @@ impl Umac64 {
 
     pub fn mac(&self, msg: &[u8]) -> u64 {
         if msg.is_empty() { return self.key.axu_b; }
-        let words = Self::msg_to_words(msg);
-        let nh = nh_compress(&self.key.nh_key, &words);
+        let (words, n) = Self::msg_to_words(msg);
+        let nh = nh_compress(&self.key.nh_key, &words[..n]);
         Self::axu_finish(self.key.axu_a, nh, self.key.axu_b)
     }
 
@@ -337,15 +338,16 @@ impl Umac64 {
         if ok == 1 { Ok(()) } else { Err(UhfError::TagMismatch) }
     }
 
-    fn msg_to_words(msg: &[u8]) -> Zeroizing<Vec<u64>> {
-        let nwords = (msg.len() + 7) / 8;
-        let mut words = Zeroizing::new(vec![0u64; nwords]);
-        for (i, chunk) in msg.chunks(8).enumerate() {
+    // NH は先頭 NH_KEY_WORDS/2 語しか使わないので固定長バッファで足りる (no_std 対応)
+    fn msg_to_words(msg: &[u8]) -> (Zeroizing<[u64; NH_KEY_WORDS / 2]>, usize) {
+        let nwords = ((msg.len() + 7) / 8).min(NH_KEY_WORDS / 2);
+        let mut words = Zeroizing::new([0u64; NH_KEY_WORDS / 2]);
+        for (i, chunk) in msg.chunks(8).take(nwords).enumerate() {
             let mut b = [0u8; 8];
             b[..chunk.len()].copy_from_slice(chunk);
             words[i] = u64::from_le_bytes(b);
         }
-        words
+        (words, nwords)
     }
 
     pub fn axu_finish(a: u64, x: u64, b: u64) -> u64 {
