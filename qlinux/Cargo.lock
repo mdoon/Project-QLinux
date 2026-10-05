@@ -85,6 +85,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "ksync"
+version = "0.1.0"
+
+[[package]]
 name = "lazy_static"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -127,6 +131,17 @@ dependencies = [
  "libc",
  "wasi",
  "windows-sys",
+]
+
+[[package]]
+name = "net"
+version = "0.1.0"
+dependencies = [
+ "ksync",
+ "qkey",
+ "qphy",
+ "uhf",
+ "zeroize",
 ]
 
 [[package]]
@@ -202,12 +217,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "qkey"
+version = "0.1.0"
+dependencies = [
+ "zeroize",
+]
+
+[[package]]
 name = "qlinux-kernel"
 version = "0.1.0"
 dependencies = [
  "drivers_core",
  "ipc",
+ "ksync",
  "memory",
+ "net",
+ "qkey",
+ "qphy",
  "scheduler",
  "syscall",
  "zeroize",
@@ -235,6 +261,13 @@ dependencies = [
  "tokio",
  "uhf",
  "wc_auth",
+ "zeroize",
+]
+
+[[package]]
+name = "qphy"
+version = "0.1.0"
+dependencies = [
  "zeroize",
 ]
 
@@ -331,6 +364,7 @@ dependencies = [
 name = "syscall"
 version = "0.1.0"
 dependencies = [
+ "net",
  "zeroize",
 ]
 

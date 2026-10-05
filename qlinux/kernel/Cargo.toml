@@ -5,7 +5,8 @@ edition = "2021"
 
 [features]
 default = []
-std_test = ["scheduler/std_test", "memory/std_test", "ipc/std_test", "syscall/std_test"]
+std_test = ["scheduler/std_test", "memory/std_test", "ipc/std_test", "syscall/std_test",
+            "ksync/std_test", "qphy/std_test", "qkey/std_test", "net/std_test"]
 
 [dependencies]
 scheduler    = { path = "scheduler" }
@@ -13,4 +14,8 @@ memory       = { path = "memory" }
 ipc          = { path = "ipc" }
 syscall      = { path = "syscall" }
 drivers_core = { path = "drivers_core" }
+ksync        = { path = "ksync" }
+qphy         = { path = "qphy" }
+qkey         = { path = "qkey" }
+net          = { path = "net" }
 zeroize      = { version = "1", default-features = false, features = ["derive"] }
